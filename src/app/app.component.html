@@ -1,22 +1,22 @@
 <app-header />
 <main>
   <ul id="users">
+    @for (user of users; track user.id) {
     <li>
       <app-user
-        [id]="users[0].id"
-        [avatar]="users[0].avatar"
-        [name]="users[0].name"
+        [id]="user.id"
+        [avatar]="user.avatar"
+        [name]="user.name"
+        [selected]="user.id === selectedUserId"
         (select)="onSelect($event)"
       />
     </li>
-    <li>
-      <app-user
-        [id]="users[1].id"
-        [avatar]="users[1].avatar"
-        [name]="users[1].name"
-        (select)="onSelect($event)"
-      />
-      <!-- $event = this.id this.select.emit(this.id) from the chikd-->
-    </li>
+    }
+    <!-- $event = this.id this.select.emit(this.id) from the chikd-->
   </ul>
+  @if (selectedUser) {
+  <app-task [userId]="selectedUser.id" [name]="selectedUser.name" />
+  } @else {
+  <p id="fallback">Select a user to see their tasks!</p>
+  }
 </main>

@@ -1,0 +1,8 @@
+<article>
+  <h2>{{ todo.title }}</h2>
+  <time>{{ todo.dueDate }}</time>
+  <p>{{ todo.summary }}</p>
+  <p class="actions">
+    <button (click)="onCompleteTodo()">Complete</button>
+  </p>
+</article>
