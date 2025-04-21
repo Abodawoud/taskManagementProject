@@ -5,3 +5,9 @@ export interface Todo {
   summary: string;
   dueDate: string;
 }
+
+export interface NewTodo {
+  title: string;
+  summary: string;
+  date: string;
+}

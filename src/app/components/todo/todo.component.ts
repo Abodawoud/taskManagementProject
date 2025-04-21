@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Todo } from '@/models/todo';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-todo',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css',
 })

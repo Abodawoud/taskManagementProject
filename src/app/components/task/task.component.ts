@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { DUMMY_USERS } from '../../dummy-users';
 import { TodoComponent } from '../todo/todo.component';
 import { DUMMY_TODOS } from '@/dummy-todos';
 import { NewTaskComponent } from '../new-task/new-task.component';
+import { type NewTodo } from '@/models/todo';
 
 @Component({
   selector: 'app-task',
@@ -11,8 +11,8 @@ import { NewTaskComponent } from '../new-task/new-task.component';
   styleUrl: './task.component.css',
 })
 export class TaskComponent {
-  @Input({ required: true }) userId?: string;
-  @Input({ required: true }) name?: string;
+  @Input({ required: true }) userId!: string;
+  @Input({ required: true }) name!: string;
 
   todos = DUMMY_TODOS;
   isAddingNewTask = false;
@@ -27,5 +27,20 @@ export class TaskComponent {
 
   addNewTask() {
     this.isAddingNewTask = true;
+  }
+
+  onCancelAddTask() {
+    this.isAddingNewTask = false;
+  }
+
+  onAddTask(newTodo: NewTodo) {
+    this.todos.push({
+      id: new Date().getTime().toString(),
+      userId: this.userId,
+      title: newTodo.title,
+      summary: newTodo.summary,
+      dueDate: newTodo.date,
+    });
+    this.isAddingNewTask = false;
   }
 }
